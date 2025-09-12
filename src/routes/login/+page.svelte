@@ -51,5 +51,5 @@
         <h2 style="font-family: asimovian;" class="italic">Welcome to</h2>
         <h1 class="!text-5xl">CC PAY ZOZS</h1>
     </div>
-    <div id="buttonDiv" class="scale-125 mb-4"></div>
+    <div id="buttonDiv" class="scale-125 w-full mb-4"></div>
 </div>
