@@ -53,7 +53,7 @@
         document.getElementById("logoutBtn").onclick = () => {
             setTimeout(() => {
                 clearUserState()
-                window.location.replace(window.location.origin+"/login")
+                window.location.replace(window.location.origin)
             }, 150)
         }
 
