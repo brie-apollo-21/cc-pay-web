@@ -12,8 +12,8 @@
 	<!-- <script src="https://accounts.google.com/gsi/client" async></script> -->
 </svelte:head>
 
-<div class="w-screen h-screen absolute overflow-hidden bg-cover -z-20" style="background-image: url({bg});"></div>
+<div class="w-dvh h-dvh absolute overflow-hidden bg-cover -z-20" style="background-image: url({bg});"></div>
 <!-- <div class="w-screen h-screen absolute -z-10" style="background: linear-gradient(180deg,rgba(0, 0, 0, 0.275) 20%, rgba(255, 255, 255, 0) 50%);"></div> -->
-<div class="w-screen h-screen" style="padding: 10%;">
+<div class="w-dvh h-dvh" style="padding: 10%;">
     {@render children?.()}
 </div>
