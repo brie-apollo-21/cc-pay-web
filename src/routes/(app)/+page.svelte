@@ -68,8 +68,10 @@
     })
 </script>
 
+
+<div class="flex flex-col h-full items-center gap-4">
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div class="flex flex-row items-center rounded-full p-2 justify-between drop-shadow-sm drop-shadow-aztec-gold bg-maize">
+    <div class="flex flex-row w-full items-center rounded-full p-2 justify-between drop-shadow-sm drop-shadow-aztec-gold bg-maize">
         <div class="flex flex-row items-center m-0 p-0">
             <div class="flex items-center justify-center rounded-full aspect-square w-14 bg-aztec-gold/50"><i class="fa-solid fa-wallet text-lg"></i></div>
             <div class="flex flex-col h-full align-middle ml-2">
@@ -83,7 +85,6 @@
     <!-- svelte-ignore a11y_media_has_caption -->
     <video id="qr" class="aspect-square object-cover my-4 rounded-md drop-shadow-sm h-0"></video>
 
-<div class="flex flex-col h-full items-center gap-4">
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     {#if $scanning == false}
     

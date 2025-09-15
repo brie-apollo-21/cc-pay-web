@@ -11,7 +11,7 @@
 
     console.log(label)
     if(label == null) {
-        console.log("custom")
+        // console.log("custom")
         custom = true;
         onMount(() => {
             document.getElementById("icon"+timestamp).remove()
