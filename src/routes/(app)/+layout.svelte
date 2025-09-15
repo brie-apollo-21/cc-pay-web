@@ -18,6 +18,8 @@
 	</script> -->
 </svelte:head>
 
-<h1>CC PAY ZOZS</h1>
-<div class="divider"></div>
-{@render children?.()}
+<div class="h-screen w-screen" style="padding: 10%;">
+    <h1>CC PAY ZOZS</h1>
+    <div class="divider"></div>
+    {@render children?.()}
+</div>

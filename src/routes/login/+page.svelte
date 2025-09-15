@@ -48,9 +48,9 @@
 </script>
 
 <div class="flex flex-col items-center h-full justify-between">
-    <div class="flex items-center flex-col">
+    <div class="flex items-center flex-col text-black mt-12">
         <h2 style="font-family: asimovian;" class="italic">Welcome to</h2>
         <h1 class="!text-5xl">CC PAY ZOZS</h1>
     </div>
-    <div id="buttonDiv" class="scale-125 mb-4"></div>
+    <div id="buttonDiv" class="scale-125 mb-6"></div>
 </div>
