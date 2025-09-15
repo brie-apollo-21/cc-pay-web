@@ -1,6 +1,6 @@
 <script>
 	import '../../app.css';
-    import bg from '$lib/assets/bg.png';
+    import bg from '$lib/assets/bg.jpg';
 	
 	let { children } = $props();
 </script>
