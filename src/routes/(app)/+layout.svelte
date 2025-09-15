@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<!-- <link rel="icon" href={favicon} /> -->
     <script src="https://kit.fontawesome.com/592394738c.js" crossorigin="anonymous"></script>
 	<!-- <script>
         import { userState } from '$lib/user.svelte';
