@@ -44,10 +44,12 @@
             if(value == false) {
                 qrScanner.stop()
                 document.getElementById("qr").classList.add("h-0")
+                document.getElementById("logoutBtn").classList.remove("hidden")
             }
             if(value == true) {
                 qrScanner.start()
                 document.getElementById("qr").classList.remove("h-0")
+                document.getElementById("logoutBtn").classList.add("hidden")
             }
         })
         document.getElementById("logoutBtn").onclick = () => {
@@ -82,6 +84,7 @@
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <div onclick={() => {scanning.set(true)}} id="scanBtn" class="flex flex-col items-center justify-center rounded-full aspect-square w-14 group" style="background-color: #c5934a80;"><i class="fa-solid fa-qrcode text-lg group-active:opacity-50 duration-200"></i><span class="text-xs">Scan</span></div>
     </div>
+    
     <!-- svelte-ignore a11y_media_has_caption -->
     <video id="qr" class="aspect-square object-cover my-4 rounded-md drop-shadow-sm h-0"></video>
 
