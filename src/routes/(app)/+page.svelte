@@ -23,7 +23,7 @@
         }
         if(userState.id_token == undefined && window.location.href !== window.location.origin+"/login") {
             // alert(JSON.stringify(userState))
-            window.location.replace(window.location.origin+"/login")
+            window.location.href = window.location.origin+"/login"
         }
 
         const qrScanner = new QrScanner(
@@ -53,7 +53,7 @@
         document.getElementById("logoutBtn").onclick = () => {
             setTimeout(() => {
                 clearUserState()
-                window.location.replace(window.location.origin)
+                window.location.href = window.location.origin+"/login"
             }, 150)
         }
 
