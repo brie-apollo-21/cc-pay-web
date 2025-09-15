@@ -18,7 +18,7 @@
 	</script> -->
 </svelte:head>
 
-<div class="h-dvh w-dvh select-none" style="padding: 10%;">
+<div class="h-dvh w-screen select-none" style="padding: 10%;">
     <h1>CC PAY ZOZS</h1>
     <div class="divider"></div>
     {@render children?.()}
