@@ -1,8 +1,8 @@
 import axios from "axios";
 import thousandsFormat from "./thousandsFormat";
 
-const API_URI = "https://ccpay-40-2fd08e733484.herokuapp.com"
-// const API_URI = "http://localhost:80"
+// const API_URI = "https://ccpay-40-2fd08e733484.herokuapp.com"
+const API_URI = "http://localhost:80"
 
 export const userState = $state({
     id_token: undefined,
@@ -42,8 +42,15 @@ const request = async (endpoint, body) => {
         return result.data
     }
     catch (err) {
-        console.error(err)
-        alert(err)
+        if(err.status == 500) {
+            clearUserState()
+            window.location.href = window.location.origin+"/login"
+            alert("Session expired. Please login again.")
+            return "Reset User Session"
+        } else {
+            console.error(err)
+            alert(err)
+        }
     }
 }
 
@@ -61,6 +68,17 @@ export const refreshBalance = async () => {
 export const startSession = async (id_token) => {
     await request('/start_session', {
         "id_token": id_token
+    }).then((result) => {
+        console.log(result)
+        return result;
+    }).catch((err) => {
+        console.error(err)
+    })
+}
+
+export const endSession = async () => {
+    await request('/end_session', {
+        "id_token": userState.id_token
     }).then((result) => {
         console.log(result)
         return result;
