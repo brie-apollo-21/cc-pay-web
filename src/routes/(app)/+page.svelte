@@ -1,6 +1,7 @@
+
 <script>
     import { onMount } from 'svelte';
-    import { userState, clearUserState, refreshBalance, completePayment, refreshHistory } from '$lib/user.svelte';
+    import { userState, clearUserState, refreshBalance, completePayment, refreshHistory, endSession } from '$lib/user.svelte';
     import QrScanner from 'qr-scanner';
     import { writable } from 'svelte/store';
     import thousandsFormat from '$lib/thousandsFormat';
@@ -54,7 +55,9 @@
         })
         document.getElementById("logoutBtn").onclick = () => {
             setTimeout(() => {
-                clearUserState()
+                endSession().then(() => {
+                    clearUserState()
+                })
                 window.location.href = window.location.origin+"/login"
             }, 150)
         }
