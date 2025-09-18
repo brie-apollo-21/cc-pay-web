@@ -88,14 +88,14 @@
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div class="flex flex-row w-full items-center rounded-full p-2 justify-between drop-shadow-sm drop-shadow-aztec-gold bg-maize">
         <div class="flex flex-row items-center m-0 p-0">
-            <div class="flex items-center justify-center rounded-full aspect-square w-14 bg-aztec-gold/50"><i class="fa-solid fa-wallet text-lg"></i></div>
-            <div class="flex flex-col h-full align-middle ml-2">
+            <div class="flex items-center justify-center rounded-full aspect-square h-14 w-14 bg-aztec-gold/50"><i class="fa-solid fa-wallet text-lg"></i></div>
+            <div class="flex flex-col h-full w-fit align-middle ml-2">
                 <span id="balance" class="font-bold leading-5">{userState.balance}</span>
-                <span id="name" class="leading-5">{userState.name}</span>
+                <span id="name" class="leading-5 wrap-anywhere">{userState.name}</span>
             </div>
         </div>
         <!-- svelte-ignore a11y_click_events_have_key_events -->
-        <div onclick={() => {scanning.set(true)}} id="scanBtn" class="flex flex-col items-center justify-center rounded-full aspect-square w-14 group" style="background-color: #c5934a80;"><i class="fa-solid fa-qrcode text-lg group-active:opacity-50 duration-200"></i><span class="text-xs">Scan</span></div>
+        <div onclick={() => {scanning.set(true)}} id="scanBtn" class="flex flex-col items-center justify-center rounded-full aspect-square h-14 w-14 group" style="background-color: #c5934a80;"><i class="fa-solid fa-qrcode text-lg group-active:opacity-50 duration-200"></i><span class="text-xs">Scan</span></div>
     </div>
     
     <!-- svelte-ignore a11y_media_has_caption -->
