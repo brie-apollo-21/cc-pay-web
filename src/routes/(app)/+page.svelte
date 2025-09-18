@@ -1,7 +1,7 @@
 
 <script>
     import { onMount } from 'svelte';
-    import { userState, clearUserState, refreshBalance, completePayment, refreshHistory, endSession } from '$lib/user.svelte';
+    import { userState, clearUserState, refreshBalance, completePayment, refreshHistory, endSession, getMerchantList } from '$lib/user.svelte';
     import QrScanner from 'qr-scanner';
     import { writable } from 'svelte/store';
     import thousandsFormat from '$lib/thousandsFormat';
@@ -10,6 +10,12 @@
     const merchant = writable(undefined);
     const price = writable(undefined);
     const scanning = writable(false);
+    const noCamera = writable(false);
+    const merchant_list = writable([]);
+    getMerchantList().then((list) => {
+        console.log(list)
+        merchant_list.set(list)
+    })
     
     onMount(() => {
         if(userState.id_token == undefined && localStorage.getItem("user") != null) {
@@ -48,9 +54,13 @@
                 document.getElementById("logoutBtn").classList.remove("hidden")
             }
             if(value == true) {
-                qrScanner.start()
-                document.getElementById("qr").classList.remove("h-0")
-                document.getElementById("logoutBtn").classList.add("hidden")
+                qrScanner.start().then(() => {
+                    document.getElementById("qr").classList.remove("h-0")
+                    document.getElementById("logoutBtn").classList.add("hidden")
+                }).catch((err) => {
+                    noCamera.set(true)
+                    console.log($merchant_list)
+                })
             }
         })
         document.getElementById("logoutBtn").onclick = () => {
@@ -89,7 +99,20 @@
     </div>
     
     <!-- svelte-ignore a11y_media_has_caption -->
-    <video id="qr" class="aspect-square object-cover my-4 rounded-md drop-shadow-sm h-0"></video>
+    <video id="qr" class="aspect-square object-cover rounded-md drop-shadow-sm h-0"></video>
+
+    {#if $noCamera == true}
+        <select id="merchantSelect" onchange={() => {
+                merchant.set(document.getElementById('merchantSelect').value);
+                console.log($merchant_list)
+            }}
+            class="border border-aztec-gold w-3/4 py-2 px-4 rounded-md text-center bg-maize">
+            <option disabled selected>Select Merchant</option>
+            {#each $merchant_list as merchant_name}
+                <option value="{merchant_name}">{merchant_name}</option>
+            {/each}
+        </select>
+    {/if}
 
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     {#if $scanning == false}
@@ -111,9 +134,10 @@
         setTimeout(() => {
             merchant.set(undefined);
             price.set(undefined);
-            scanning.set(false)
+            scanning.set(false);
+            noCamera.set(false);
         }, 150)
-    }} class="active:opacity-50 active:underline duration-200">cancel</i>
+    }} class="active:opacity-50 active:underline duration-200 text-red-800 font-semibold">cancel payment</i>
 
     {/if}
     {#if $merchant != undefined}
@@ -127,6 +151,7 @@
             price.set(undefined)
             merchant.set(undefined)
             scanning.set(false)
+            noCamera.set(false)
             refreshBalance()
             refreshHistory()
             if(response == "Payment completed") {

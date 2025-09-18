@@ -116,3 +116,8 @@ export const refreshHistory = async (merchant, amount) => {
         console.error(err)
     })
 }
+
+export const getMerchantList = async () => {
+    const result = await axios.get(API_URI+"/merchants")
+    return result.data
+}
