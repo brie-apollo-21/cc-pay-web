@@ -146,6 +146,7 @@
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div id="payBtn" onclick={() => {
+        document.getElementById('payBtn').disabled = true;
         completePayment($merchant, $price).then((response) => {
             document.getElementById('payBtn').classList.remove("animate-pulse")
             price.set(undefined)
@@ -154,6 +155,7 @@
             noCamera.set(false)
             refreshBalance()
             refreshHistory()
+            document.getElementById('payBtn').disabled = false;
             if(response == "Payment completed") {
                 alert("Payment completed!")
             }
