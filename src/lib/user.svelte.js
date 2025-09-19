@@ -69,6 +69,17 @@ export const refreshBalance = async () => {
     })
 }
 
+export const getBalance = async (name) => {
+    return request('/balance', {
+        "name": name
+    }).then((balance) => {
+        console.log(balance)
+        return balance
+    }).catch((err) => {
+        return "Failed to refresh balance."
+    })
+}
+
 export const startSession = async (id_token) => {
     await request('/start_session', {
         "id_token": id_token
