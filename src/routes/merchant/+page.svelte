@@ -2,6 +2,7 @@
 	import '../../app.css';
     import { getBalance, getMerchantList } from '$lib/user.svelte';
     import { get, writable } from 'svelte/store';
+    import thousandsFormat from '$lib/thousandsFormat';
 
     const merchant = writable(undefined);
     const balance = writable(undefined);
@@ -16,11 +17,18 @@
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="h-dvh w-dvw flex flex-col items-center justify-center gap-4">
+<div class="h-dvh w-dvw flex flex-col items-center justify-center gap-4 px-8">
 
     {#if $check_data == true}
-        <h1 class="font-bold" style="font-family: 'Arimo';">Data for <i>{$merchant}</i></h1>
-        <span>Total Revenue: {$balance}</span>
+        <h1 class="font-bold text-center" style="font-family: 'Arimo';">{$merchant}</h1>
+        <span>Total Revenue: Rp{thousandsFormat($balance)}</span>
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <div onclick={() => {
+            getBalance($merchant).then((response) => {
+                balance.set(response)
+                check_data.set(true)
+            })
+        }} class="flex justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group"><span class="group-active:opacity-50 duration-200">Refresh Data</span></div>
     {:else}
         <h1>MERCHANT DASHBOARD</h1>
         <select id="merchant_select" onchange={() => {merchant.set(document.getElementById("merchant_select").value);}} class="py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize text-center">
@@ -28,6 +36,7 @@
             {#each $merchant_list as merchant_name}
                 <option value="{merchant_name}">{merchant_name}</option>
             {/each}
+            
         </select>
         <!-- svelte-ignore a11y_click_events_have_key_events -->
         <div onclick={() => {
