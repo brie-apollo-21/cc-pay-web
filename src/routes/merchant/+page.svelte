@@ -28,9 +28,9 @@
                 balance.set(response)
                 check_data.set(true)
             })
-        }} class="flex justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group"><span class="group-active:opacity-50 duration-200">Refresh Data</span></div>
+        }} class="flex justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group select-none"><span class="group-active:opacity-50 duration-200">Refresh Data</span></div>
         <!-- svelte-ignore a11y_click_events_have_key_events -->
-        <i onclick={() => {check_data.set(false)}} class="opacity-50 active:opacity-25 active:underline duration-200 absolute bottom-10">exit</i>
+        <i onclick={() => {check_data.set(false)}} class="opacity-50 active:opacity-25 active:underline duration-200 absolute bottom-10 select-none">exit</i>
     {:else}
         <h1>MERCHANT DASHBOARD</h1>
         <select id="merchant_select" onchange={() => {merchant.set(document.getElementById("merchant_select").value);}} class="py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize text-center">
@@ -48,7 +48,7 @@
                 balance.set(response)
                 check_data.set(true)
             })
-        }} class="flex justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group"><span class="group-active:opacity-50 duration-200">Check <i>{$merchant}</i> Data</span></div>
+        }} class="flex justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group select-none"><span class="group-active:opacity-50 duration-200">Check <i>{$merchant}</i> Data</span></div>
     {/if}
 
 </div>
