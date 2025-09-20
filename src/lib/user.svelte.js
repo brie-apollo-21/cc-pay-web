@@ -52,6 +52,9 @@ const request = async (endpoint, body) => {
         } else if(err.status == 400 && endpoint == "/pay") {
             alert(err.response.data)
         } else {
+            await axios.post(API_URI+"/log", {
+                "message": err.toString()
+            })
             console.error(err)
             alert(err)
         }
