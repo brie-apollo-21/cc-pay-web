@@ -104,10 +104,12 @@ export const endSession = async () => {
 
 export const completePayment = async (merchant, amount) => {
     // userState.paymentCompleted = false
+    const regex = /([^\d])+/g
+    const amount_clean = Number(amount.replaceAll(regex, ""))
     await request('/pay', {
         "id_token": userState.id_token,
         "merchant_name": merchant,
-        "amount": amount
+        "amount": amount_clean
     }).then((result) => {
         console.log(result)
         return result;
