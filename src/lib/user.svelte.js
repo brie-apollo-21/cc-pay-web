@@ -59,7 +59,7 @@ const request = async (endpoint, body) => {
 }
 
 export const refreshBalance = async () => {
-    await request('/balance', {
+    return request('/balance', {
         "email": userState.email
     }).then((balance) => {
         console.log(balance)
@@ -81,7 +81,7 @@ export const getBalance = async (name) => {
 }
 
 export const startSession = async (id_token) => {
-    await request('/start_session', {
+    return request('/start_session', {
         "id_token": id_token
     }).then((result) => {
         console.log(result)
@@ -92,7 +92,7 @@ export const startSession = async (id_token) => {
 }
 
 export const endSession = async () => {
-    await request('/end_session', {
+    return request('/end_session', {
         "id_token": userState.id_token
     }).then((result) => {
         console.log(result)
@@ -106,7 +106,7 @@ export const completePayment = async (merchant, amount) => {
     // userState.paymentCompleted = false
     const regex = /([^\d])+/g
     const amount_clean = Number(amount.replaceAll(regex, ""))
-    await request('/pay', {
+    return request('/pay', {
         "id_token": userState.id_token,
         "merchant_name": merchant,
         "amount": amount_clean
@@ -121,7 +121,7 @@ export const completePayment = async (merchant, amount) => {
 
 export const refreshHistory = async () => {
     // userState.paymentCompleted = false
-    await request('/history', {
+    return request('/history', {
         "id_token": userState.id_token
     }).then((result) => {
         console.log(result)
