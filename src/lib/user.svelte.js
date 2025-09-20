@@ -53,7 +53,7 @@ const request = async (endpoint, body) => {
             alert(err.response.data)
         } else {
             await axios.post(API_URI+"/log", {
-                "message": userState.email+" - "+JSON.stringify(err)
+                "message": userState.email+" - "+JSON.stringify(err.response)
             })
             console.error(err)
             alert(err)
