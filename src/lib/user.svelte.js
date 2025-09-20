@@ -119,7 +119,7 @@ export const completePayment = async (merchant, amount) => {
     })
 }
 
-export const refreshHistory = async (merchant, amount) => {
+export const refreshHistory = async () => {
     // userState.paymentCompleted = false
     await request('/history', {
         "id_token": userState.id_token
@@ -130,6 +130,19 @@ export const refreshHistory = async (merchant, amount) => {
         // userState.paymentCompleted = true
     }).catch((err) => {
         console.error(err)
+    })
+}
+
+export const getHistory = async (name) => {
+    // userState.paymentCompleted = false
+    return request('/history', {
+        "name": name
+    }).then((result) => {
+        return result
+        // userState.paymentCompleted = true
+    }).catch((err) => {
+        console.error(err)
+        return "Failed to get history."
     })
 }
 
