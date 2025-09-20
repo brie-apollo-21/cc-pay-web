@@ -26,7 +26,7 @@ export const clearUserState = () => {
 
 const request = async (endpoint, body) => {
 
-    console.log(userState)
+    // console.log(userState)
 
     let config = {
         method: 'POST',
@@ -45,8 +45,8 @@ const request = async (endpoint, body) => {
     catch (err) {
         console.log(err)
         if(err.status == 500) {
-            clearUserState()
-            window.location.href = window.location.origin+"/login"
+            // clearUserState()
+            // window.location.href = window.location.origin+"/login"
             alert("Session expired. Please login again.")
             return "Reset User Session"
         } else if(err.status == 400 && endpoint == "/pay") {
@@ -76,7 +76,6 @@ export const getBalance = async (name) => {
     return request('/balance', {
         "name": name
     }).then((balance) => {
-        console.log(balance)
         return balance
     }).catch((err) => {
         return "Failed to refresh balance."
@@ -152,4 +151,19 @@ export const getHistory = async (name) => {
 export const getMerchantList = async () => {
     const result = await axios.get(API_URI+"/merchants")
     return result.data
+}
+
+export const setBalances = async (amount, nis) => {
+    const regex = /\d{7}/g
+    console.log(userState.id_token)
+    return request('/set_balances', {
+        "id_token": userState.id_token,
+        "amount": amount,
+        "nis": nis.match(regex)
+    }).then((result) => {
+        console.log(result)
+        return result;
+    }).catch((err) => {
+        console.error(err)
+    })
 }

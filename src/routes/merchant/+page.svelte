@@ -10,7 +10,7 @@
     const merchant_list = writable([]);
     getMerchantList().then((list) => {
         console.log(list)
-        merchant_list.set(list)
+        merchant_list.set(Object.keys(list))
     })
 
     const check_data = writable(false);
