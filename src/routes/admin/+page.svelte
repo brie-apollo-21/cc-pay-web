@@ -56,8 +56,7 @@
                 alert(response)
             })
         }} class="flex hover:cursor-pointer hover:contrast-75 duration-200 justify-center w-fit py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize group select-none"><span class="group-active:opacity-50 duration-200">Submit</span></div>
-
-        {/if}
+    {/if}
     {#if $action == "merchant_balance"}
         <table class="text-left my-4">
             <thead>
