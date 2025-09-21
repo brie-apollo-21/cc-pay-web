@@ -45,8 +45,8 @@ const request = async (endpoint, body) => {
     catch (err) {
         console.log(err)
         if(err.status == 500) {
-            // clearUserState()
-            // window.location.href = window.location.origin+"/login"
+            clearUserState()
+            window.location.href = window.location.origin+"/login"
             alert("Session expired. Please login again.")
             return "Reset User Session"
         } else if(err.status == 400 && endpoint == "/pay") {
