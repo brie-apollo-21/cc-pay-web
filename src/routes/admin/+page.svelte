@@ -39,7 +39,7 @@
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="min-h-dvh w-dvw flex flex-col items-center justify-center gap-4 px-8 py-8">
+<div class="min-h-dvh w-dvw flex flex-col items-center justify-center gap-4 px-8 py-8 select-none">
     <h1 class="font-bold text-center" style="font-family: 'Arimo';">ADMIN DASHBOARD</h1>
     <select id="action_select" onchange={() => {action.set(document.getElementById("action_select").value)}} class="py-2 px-4 rounded-full drop-shadow-sm drop-shadow-aztec-gold bg-maize text-center">
         <option value="set_balance">Set Balance</option>
